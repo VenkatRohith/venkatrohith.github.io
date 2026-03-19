@@ -1,0 +1,148 @@
+---
+interface SocialLink {
+  name: string;
+  url: string;
+  icon: string;
+}
+
+const socialLinks: SocialLink[] = [
+  {
+    name: 'Resume',
+    url: 'https://drive.google.com/file/d/1c992oQjdFieYtfLahD_pC78odY9_2YHe/view?usp=sharing',
+    icon: 'file',
+  },
+  {
+    name: 'Email',
+    url: 'mailto:venkatrohithcse63@gmail.com',
+    icon: 'mail',
+  },
+  {
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/venkat-rohith/',
+    icon: 'linkedin',
+  },
+  {
+    name: 'GitHub',
+    url: 'https://github.com/venkatrohith',
+    icon: 'github',
+  },
+  {
+    name: 'HackerRank',
+    url: 'https://www.hackerrank.com/venkatrohith',
+    icon: 'code',
+  },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer role="contentinfo" class="footer">
+  <div class="footer__container">
+    <div class="footer__content">
+      <div class="footer__section">
+        <h2 class="footer__heading">Connect</h2>
+        <ul class="social-links">
+          {
+            socialLinks.map((link) => (
+              <li>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.name}
+                  class="social-link"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="footer__section">
+        <h2 class="footer__heading">Quick Links</h2>
+        <ul class="footer__links">
+          <li><a href="/" aria-label="Go to home page">Home</a></li>
+          <li>
+            <a href="/about" aria-label="Learn about Rohith">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; {currentYear} Rohith Saripalli. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+    padding: 3rem 1.5rem;
+    transition:
+      background-color 0.3s,
+      border-color 0.3s;
+  }
+
+  .footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer__section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer__heading {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .social-links,
+  .footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .social-link,
+  .footer__links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .social-link:hover,
+  .footer__links a:hover {
+    color: var(--accent);
+  }
+
+  .footer__bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .footer__bottom p {
+    margin: 0.5rem 0;
+  }
+</style>

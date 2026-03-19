@@ -1,0 +1,127 @@
+---
+import '@styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Senior Software Engineer | Rohith Saripalli' } =
+  Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="application-name" content="Rohith Saripalli's Portfolio" />
+    <meta name="author" content="Rohith Saripalli" />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="portfolio, software engineer, full-stack, react, distributed systems, ai"
+    />
+
+    <title>{title} | Rohith Saripalli</title>
+
+    <!-- Icons -->
+    <link rel="icon" href="https://github.com/venkatrohith.png" />
+    <link rel="apple-touch-icon" href="https://github.com/venkatrohith.png" />
+
+    <style is:global>
+      @view-transition {
+        navigation: auto;
+      }
+    </style>
+
+    <!-- JSON-LD Structured Data for Person Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Rohith Saripalli",
+        "url": "https://venkatrohith.github.io",
+        "jobTitle": "Senior Software Engineer",
+        "image": "https://github.com/venkatrohith.png",
+        "sameAs": [
+          "https://www.linkedin.com/in/venkat-rohith/",
+          "https://github.com/venkatrohith",
+          "https://www.hackerrank.com/venkatrohith"
+        ],
+        "description": "Senior Software Engineer designing scalable distributed systems and AI-driven solutions for complex, real-world problems",
+        "knowsAbout": [
+          "React",
+          "TypeScript",
+          "JavaScript",
+          "Distributed Systems",
+          "Web Performance",
+          ".Net Core",
+          "C#",
+          "Accessibility",
+          "Node.js",
+          "AI"
+        ],
+        "email": "venkatrohithcse63@gmail.com"
+      }
+    </script>
+
+    <!-- JSON-LD Structured Data for Website Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Rohith Saripalli's Portfolio",
+        "url": "https://venkatrohith.github.io",
+        "author": {
+          "@type": "Person",
+          "name": "Rohith Saripalli"
+        },
+        "description": "Portfolio of a Senior Software Engineer"
+      }
+    </script>
+
+    <!-- Theme initialization script -->
+    <script is:inline>
+      // Apply theme to document
+      function setTheme(doc = document) {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia(
+          '(prefers-color-scheme: dark)'
+        ).matches;
+        const theme = stored || (prefersDark ? 'dark' : 'light');
+        doc.documentElement.className = theme;
+      }
+
+      // Initial load
+      setTheme();
+
+      // Before view transition swap - apply theme to incoming page
+      document.addEventListener('astro:before-swap', (event) => {
+        setTheme(event.newDocument);
+      });
+    </script>
+  </head>
+  <body>
+    <a href="#main" class="skip-to-main">Skip to main content</a>
+    <slot />
+  </body>
+</html>
+
+<style>
+  .skip-to-main {
+    position: absolute;
+    left: -9999px;
+    z-index: 999;
+    padding: 1em;
+    background-color: var(--accent);
+    color: white;
+    text-decoration: none;
+  }
+
+  .skip-to-main:focus {
+    left: 0;
+    top: 0;
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalUrl?: string;
+  author?: string;
+  publishDate?: Date;
+  updatedDate?: Date;
+  type?: 'website' | 'article';
+}
+
+const {
+  title,
+  description,
+  image = '/default-og.png',
+  canonicalUrl = Astro.url.href,
+  author,
+  publishDate,
+  updatedDate,
+  type = 'website',
+} = Astro.props;
+
+const imageUrl = new URL(image, Astro.site).href;
+---
+
+{/* Primary Meta Tags */}
+<meta name="description" content={description} />
+<meta
+  name="keywords"
+  content="portfolio, software engineer, full-stack, react, distributed systems, ai, typescript, web performance"
+/>
+<meta name="robots" content="index, follow" />
+<meta name="language" content="English" />
+<meta name="revisit-after" content="7 days" />
+
+{/* Open Graph / Facebook */}
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+{/* Twitter */}
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalUrl} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={imageUrl} />
+<meta property="twitter:creator" content="@venkat_rohith" />
+
+{/* Canonical URL */}
+<link rel="canonical" href={canonicalUrl} />
+
+{/* Article Meta */}
+{
+  publishDate && (
+    <meta
+      property="article:published_time"
+      content={publishDate.toISOString()}
+    />
+  )
+}
+{
+  updatedDate && (
+    <meta
+      property="article:modified_time"
+      content={updatedDate.toISOString()}
+    />
+  )
+}
+{author && <meta property="article:author" content={author} />}
