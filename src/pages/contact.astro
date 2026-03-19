@@ -1,0 +1,187 @@
+---
+import Layout from '@layouts/Layout.astro';
+---
+
+<Layout
+  title="Contact"
+  description="Get in touch with Rohith Saripalli, Senior Software Engineer"
+>
+  <div class="contact__content" transition:animate="fade">
+    <section class="contact__section">
+      <h1>Let's Connect</h1>
+      <p class="contact__intro">
+        I'm always interested in hearing about new opportunities,
+        collaborations, or just having a chat about tech, AI, or distributed
+        systems.
+      </p>
+
+      <div class="contact__methods">
+        <div class="contact__card">
+          <h2>Email</h2>
+          <p>The quickest way to reach me:</p>
+          <a
+            href="mailto:venkatrohithcse63@gmail.com"
+            class="contact__link"
+            aria-label="Send email to venkatrohithcse63@gmail.com"
+          >
+            Mail Me
+          </a>
+        </div>
+
+        <div class="contact__card">
+          <h2>LinkedIn</h2>
+          <p>Connect with me professionally:</p>
+          <a
+            href="https://www.linkedin.com/in/venkat-rohith/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact__link"
+            aria-label="Visit Rohith Saripalli on LinkedIn (opens in new tab)"
+            transition:animate="fade"
+          >
+            Visit my LinkedIn
+          </a>
+        </div>
+
+        <div class="contact__card">
+          <h2>GitHub</h2>
+          <p>Check out my open source work:</p>
+          <a
+            href="https://github.com/venkatrohith"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact__link"
+            aria-label="Visit Rohith Saripalli's GitHub repository (opens in new tab)"
+            transition:animate="fade"
+          >
+            Visit my GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="contact__note">
+        <p>
+          <strong>Recruiters:</strong> I'm open to discussing full-time positions.
+          Feel free to reach out via email.
+        </p>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .contact__content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .contact__section {
+    animation: fadeIn 0.6s ease-in;
+  }
+
+  h1 {
+    font-size: var(--text-4xl);
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+
+  .contact__intro {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+
+  .contact__methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .contact__card {
+    background-color: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    transition:
+      transform 0.3s,
+      box-shadow 0.3s;
+  }
+
+  .contact__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .contact__card h2 {
+    font-size: var(--text-xl);
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+  }
+
+  .contact__card p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: var(--text-sm);
+  }
+
+  .contact__link {
+    display: inline-block;
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .contact__link:hover {
+    border-bottom-color: var(--accent);
+  }
+
+  .contact__link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .contact__note {
+    background-color: var(--bg-secondary);
+    border-left: 4px solid var(--accent);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+  }
+
+  .contact__note p {
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .contact__content {
+      padding: 1.5rem 1rem;
+    }
+
+    h1 {
+      font-size: var(--text-3xl);
+    }
+
+    .contact__methods {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

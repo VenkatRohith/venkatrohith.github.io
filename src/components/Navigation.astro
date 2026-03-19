@@ -1,0 +1,111 @@
+---
+const currentPath = Astro.url.pathname;
+
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+const navLinks: NavLink[] = [
+  { label: 'About', href: '/about' },
+  { label: 'Experience', href: '/experience' },
+  { label: 'Contact', href: '/contact' },
+];
+---
+
+<nav role="navigation" aria-label="Main navigation" class="nav">
+  <ul class="nav__list">
+    {
+      navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[
+              'nav__link',
+              {
+                active:
+                  currentPath === link.href ||
+                  currentPath.startsWith(link.href + '/'),
+              },
+            ]}
+            aria-current={currentPath === link.href ? 'page' : undefined}
+            aria-label={`Navigate to ${link.label.toLowerCase()}`}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav__list {
+    list-style: none;
+    display: flex;
+    gap: 0;
+    align-items: center;
+  }
+
+  .nav__link {
+    display: inline-block;
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+
+  .nav__link:hover {
+    color: var(--text-primary);
+  }
+
+  .nav__link.active {
+    color: var(--accent-active);
+    border-bottom-color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .nav {
+      display: flex;
+      flex-direction: column;
+      flex: none;
+      width: 100%;
+    }
+
+    .nav__list {
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+    }
+
+    .nav__link {
+      display: block;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      border-bottom-width: 2px;
+      border-bottom-color: transparent;
+    }
+
+    .nav__link:hover {
+      background-color: var(--bg-secondary);
+    }
+
+    .nav__link.active {
+      background-color: var(--bg-secondary);
+      color: var(--accent-active);
+      border-bottom-color: var(--accent);
+    }
+  }
+</style>

@@ -1,0 +1,274 @@
+---
+import Layout from '@layouts/Layout.astro';
+---
+
+<Layout
+  title="Experience"
+  description="Work history and professional experience"
+>
+  <main id="main">
+    <div class="experience__content" transition:animate="fade">
+      <h1>Professional Experience</h1>
+
+      <div class="timeline">
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <h2 class="timeline__title">Senior Software Engineer</h2>
+            <p class="timeline__company">Conga • Mar 2024 - Present</p>
+            <p class="timeline__description">
+              Building a closed source version of Elsa Workflow Library consumed
+              by <strong
+                >6000 enterprise companies serving millions of customers</strong
+              >
+              for streamlining automated tasks, eliminating custom code and enabling
+              low-code / no-code solution.
+            </p>
+            <ul class="timeline__highlights">
+              <li>
+                Designed reusable <strong>IntelliSense-style</strong> UI components
+                adopted across the application, reducing configuration errors and
+                improving task completion efficiency.
+              </li>
+              <li>
+                Optimized workflow execution by improving critical-path
+                performance, <strong
+                  >reducing per-activity latency by 30ms</strong
+                > and achieving
+                <strong>minimum 300ms faster</strong> end-to-end workflow execution.
+              </li>
+              <li>
+                <strong>Owned end-to-end lifecycle of UI library</strong>: Code
+                quality & review, versioning, hosting & release management via
+                private JFrog Artifactory and improving defect detection,
+                rollback safety, and debugging workflows, significantly
+                increasing developer productivity.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <h2 class="timeline__title">Senior Software Engineer</h2>
+            <p class="timeline__company">Accenture • Nov 2022 - Feb 2024</p>
+            <p class="timeline__description">
+              Delivered customer-focused product solutions by combining strong
+              engineering practices with a focus on usability, scalability, and
+              measurable outcomes.
+            </p>
+            <ul class="timeline__highlights">
+              <li>
+                Built and enhanced customer-facing insurance onboarding
+                features, <strong>increasing monthly applicants by 140</strong> and
+                <strong>improving retention by 10%</strong> through secure data handling
+                and third-party rewards integration.
+              </li>
+              <li>
+                Developed a financial transition UI platform from scratch,
+                owning core workflows, bulk processing logic, and centralized
+                logging, <strong>improving system performance by 20%</strong>.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <h2 class="timeline__title">Software Engineer</h2>
+            <p class="timeline__company">Accenture • Sept 2020 - Sept 2022</p>
+            <p class="timeline__description">
+              Started career learning web development fundamentals. Built
+              responsive frontend components considering accessibility and
+              improved the performance of both frontend and backend
+              applications.
+            </p>
+            <ul class="timeline__highlights">
+              <li>
+                Completed the entire migration of a legacy procurement-to-pay
+                system from ASP.NET to React, significantly <strong
+                  >improving page load times, scalability, and maintainability</strong
+                >.
+              </li>
+              <li>
+                Designed data-loading and pagination strategies to handle large
+                datasets, <strong
+                  >reducing API response times to less than 200ms</strong
+                >
+              </li>
+              <li>
+                Drove WCAG AA accessibility compliance and responsive design
+                across products, <strong
+                  >increasing onboarding of specially-abled users by 15%.</strong
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <section class="section">
+        <h2>Education</h2>
+        <div class="education-card">
+          <h3>Bachelor of Technology in Computer Science</h3>
+          <p class="education-meta">GITAM University, Visakhapatnam • 2020</p>
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .experience__content {
+    max-width: 56.25rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .experience__content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .timeline {
+    position: relative;
+    padding: 1rem 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--border);
+  }
+
+  .timeline__item {
+    position: relative;
+    padding-left: 80px;
+    margin-bottom: 3rem;
+  }
+
+  .timeline__dot {
+    position: absolute;
+    left: 8px;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    border: 4px solid var(--bg-primary);
+    animation: scaleIn 0.6s ease-out;
+  }
+
+  .timeline__content {
+    background-color: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    transition: all var(--transition-base);
+  }
+
+  .timeline__content:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+  }
+
+  .timeline__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+  }
+
+  .timeline__company {
+    font-size: 0.95rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline__description {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .timeline__highlights {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 0;
+  }
+
+  .timeline__highlights li {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .timeline__highlights li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: bold;
+  }
+
+  .section {
+    margin-top: 3rem;
+  }
+
+  .section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+  }
+
+  .education-card {
+    background-color: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+  }
+
+  .education-card h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .education-meta {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 768px) {
+    .experience__content {
+      padding: 1.5rem 1rem;
+    }
+
+    .experience__content h1 {
+      font-size: 2rem;
+    }
+
+    .timeline::before {
+      left: 16px;
+    }
+
+    .timeline__item {
+      padding-left: 60px;
+    }
+
+    .timeline__dot {
+      width: 28px;
+      height: 28px;
+      left: 2px;
+    }
+  }
+</style>

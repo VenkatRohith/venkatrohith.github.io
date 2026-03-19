@@ -1,0 +1,184 @@
+---
+import Navigation from './Navigation.astro';
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header role="banner" class="header">
+  <div class="header__container">
+    <button
+      id="mobile-menu-btn"
+      class="mobile-menu-btn"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <a
+      href="/"
+      class="logo"
+      aria-label="Rohith Saripalli - Home"
+      transition:animate="fade"
+    >
+      <span class="logo__text">Rohith Saripalli</span>
+    </a>
+
+    <nav class="nav-wrapper">
+      <Navigation />
+    </nav>
+    <ThemeToggle />
+  </div>
+</header>
+
+<script is:inline>
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const navWrapper = document.querySelector('.nav-wrapper');
+
+  mobileMenuBtn.addEventListener('click', () => {
+    const isOpen = navWrapper.classList.toggle('mobile-open');
+    mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close menu when clicking a link
+  navWrapper.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      navWrapper.classList.remove('mobile-open');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Close menu on view transition
+  document.addEventListener('astro:before-swap', () => {
+    navWrapper.classList.remove('mobile-open');
+    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+  });
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background-color: rgba(var(--bg-primary-rgb), 0.8);
+    border-bottom: 1px solid var(--border);
+    transition:
+      background-color 0.3s,
+      border-color 0.3s;
+  }
+
+  .header__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .logo {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    transition: opacity 0.2s;
+  }
+
+  .logo:hover {
+    opacity: 0.7;
+  }
+
+  .logo__text {
+    background: linear-gradient(
+      135deg,
+      var(--accent),
+      var(--accent-secondary, var(--accent))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  @media (max-width: 768px) {
+    .header__container {
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 1.1rem;
+    }
+
+    .mobile-menu-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 101;
+    }
+
+    .mobile-menu-btn span {
+      width: 25px;
+      height: 3px;
+      background-color: var(--text-primary);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .mobile-menu-btn[aria-expanded='true'] span:nth-child(1) {
+      transform: rotate(45deg) translate(10px, 10px);
+    }
+
+    .mobile-menu-btn[aria-expanded='true'] span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-btn[aria-expanded='true'] span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .nav-wrapper {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background-color: var(--bg-primary);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem;
+      animation: slideDown 0.3s ease-out;
+    }
+
+    .nav-wrapper.mobile-open {
+      display: block;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    .header__container {
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 1rem;
+    }
+  }
+</style>
