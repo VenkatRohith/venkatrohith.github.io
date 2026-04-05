@@ -1,13 +1,13 @@
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 
-const isPreview = process.env.IS_PREVIEW === 'true';
-const prNumber = process.env.PR_NUMBER || '';
-const base = isPreview && prNumber ? `/preview/pr-${prNumber}/` : '/';
+const base = process.env.PR_NUMBER
+  ? `/preview/pr-${process.env.PR_NUMBER}/`
+  : '/';
 
 export default defineConfig({
   site: 'https://venkatrohith.github.io',
-  base,
+  base: base,
   integrations: [sitemap()],
   vite: {
     build: {
