@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '@styles/global.css';
 
 interface Props {
@@ -16,6 +17,7 @@ const { title, description = 'Senior Software Engineer | Rohith Saripalli' } =
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
+    <ClientRouter />
     <meta name="application-name" content="Rohith Saripalli's Portfolio" />
     <meta name="author" content="Rohith Saripalli" />
     <meta name="description" content={description} />
@@ -29,9 +31,6 @@ const { title, description = 'Senior Software Engineer | Rohith Saripalli' } =
     <!-- Icons -->
     <link rel="icon" href="https://github.com/venkatrohith.png" />
     <link rel="apple-touch-icon" href="https://github.com/venkatrohith.png" />
-
-    <!-- Enable View Transitions for Astro 6.x -->
-    <meta name="astro-view-transitions-enabled" content="true" />
 
     <style is:global>
       @view-transition {
