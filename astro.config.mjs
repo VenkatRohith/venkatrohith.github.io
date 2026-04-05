@@ -1,8 +1,11 @@
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 
+const base = process.env.ASTRO_BASE || '/';
+
 export default defineConfig({
   site: 'https://venkatrohith.github.io',
+  base,
   integrations: [sitemap()],
   vite: {
     build: {
