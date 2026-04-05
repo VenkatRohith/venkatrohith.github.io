@@ -1,0 +1,13 @@
+# This file controls who gets asked for review on pull requests
+
+# Default owner for everything in the repo
+
+- @venkatrohith
+
+# You can optionally add more specific rules for different paths/files
+
+# Example:
+
+# /src/components/ @venkatrohith
+
+# \*.astro @venkatrohith
