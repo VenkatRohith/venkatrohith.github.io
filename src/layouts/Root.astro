@@ -86,22 +86,55 @@ const { title, description = 'Senior Software Engineer | Rohith Saripalli' } =
 
     <!-- Theme initialization script -->
     <script is:inline>
-      // Apply theme to document
+      const themeToggleId = 'theme-toggle';
+
       function setTheme(doc = document) {
         const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia(
           '(prefers-color-scheme: dark)'
         ).matches;
         const theme = stored || (prefersDark ? 'dark' : 'light');
-        doc.documentElement.className = theme;
+        doc.documentElement.classList.remove('light', 'dark');
+        doc.documentElement.classList.add(theme);
       }
 
-      // Initial load
+      function updateThemeToggle() {
+        const button = document.getElementById(themeToggleId);
+        if (!button) return;
+        const isDark = document.documentElement.classList.contains('dark');
+        button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+      }
+
+      function toggleTheme() {
+        const isDark = document.documentElement.classList.contains('dark');
+        const newTheme = isDark ? 'light' : 'dark';
+        document.documentElement.classList.remove('light', 'dark');
+        document.documentElement.classList.add(newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeToggle();
+      }
+
+      function initializeThemeToggle() {
+        const button = document.getElementById(themeToggleId);
+        if (!button) return;
+        button.removeEventListener('click', toggleTheme);
+        button.addEventListener('click', toggleTheme);
+        updateThemeToggle();
+      }
+
+      // Initial page load
       setTheme();
+      window.addEventListener('DOMContentLoaded', initializeThemeToggle);
 
       // Before view transition swap - apply theme to incoming page
       document.addEventListener('astro:before-swap', (event) => {
         setTheme(event.newDocument);
+      });
+
+      // After view transition swap - restore toggle behavior on the new page
+      document.addEventListener('astro:after-swap', () => {
+        setTheme();
+        initializeThemeToggle();
       });
     </script>
   </head>

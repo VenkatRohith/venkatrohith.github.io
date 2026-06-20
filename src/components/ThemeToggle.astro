@@ -44,26 +44,6 @@
   </svg>
 </button>
 
-<script is:inline>
-  const button = document.getElementById('theme-toggle');
-
-  function updateThemeToggle() {
-    const isDark = document.documentElement.className === 'dark';
-    button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-  }
-
-  function toggleTheme() {
-    const isDark = document.documentElement.className === 'dark';
-    const newTheme = isDark ? 'light' : 'dark';
-    document.documentElement.className = newTheme;
-    localStorage.setItem('theme', newTheme);
-    updateThemeToggle();
-  }
-
-  button.addEventListener('click', toggleTheme);
-  updateThemeToggle();
-</script>
-
 <style>
   .theme-toggle {
     background: none;
@@ -93,20 +73,20 @@
   }
 
   .sun-icon {
-    display: block;
+    display: none;
     position: absolute;
   }
 
   .moon-icon {
-    display: none;
+    display: block;
     position: absolute;
   }
 
   :global(html.dark) .sun-icon {
-    display: none;
+    display: block;
   }
 
   :global(html.dark) .moon-icon {
-    display: block;
+    display: none;
   }
 </style>
