@@ -7,11 +7,8 @@ export default defineConfig({
   vite: {
     build: {
       assetsInlineLimit: 1024,
-      minify: 'terser',
-      terserOptions: {
-        compress: {
-          drop_console: true,
-        },
+      esbuild: {
+        drop: ['console', 'debugger'],
       },
     },
   },
